@@ -8,3 +8,7 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+
+jwt:
+  secret:
+    access: MGJzYm52aGxpMjg5d2s1M3U5OTY5NjViaGNnMjh5ZzEwZGp4ZDZlcXIweGJhcWNueHFkMHM1cWRyaGtyaGNkNGZtemliM3lzZWQzMzdtcjh5cHFxcmlnYzZ5YW4wa2NmMWIwaXBkeHE0anlveGNxdDhvdmY1eXB6czNicHU1MjA=
