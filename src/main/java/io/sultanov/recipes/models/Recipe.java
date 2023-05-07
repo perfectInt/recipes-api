@@ -1,5 +1,6 @@
 package io.sultanov.recipes.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -57,6 +58,11 @@ public class Recipe {
     @NotNull
     @Size(min = 1)
     private List<String> direction;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false)
+    @JsonBackReference
+    private User author;
 
     public Recipe(String name, String description, String category, List<String> ingredients, List<String> direction) {
         this.name = name;

@@ -5,6 +5,7 @@ import io.sultanov.recipes.models.RegisterRequest;
 import io.sultanov.recipes.security.models.LoginRequest;
 import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class LoginController {
+    @Autowired
     private final AuthService authService;
 
     @PostMapping("/login")
@@ -22,7 +24,7 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody RegisterRequest request) throws AuthException {
-        authService.register(request);
+    public String register(@RequestBody RegisterRequest request) throws AuthException {
+        return authService.register(request);
     }
 }

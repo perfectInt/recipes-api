@@ -36,7 +36,7 @@ public class AuthService {
         }
     }
 
-    public void register(@NonNull RegisterRequest request) throws AuthException {
+    public String register(@NonNull RegisterRequest request) throws AuthException {
         if (!userService.existsByEmail(request.getEmail())) {
             if (Objects.equals(request.getPassword(), request.getPasswordConfirmation())) {
                 userService.createUser(request);
@@ -46,7 +46,7 @@ public class AuthService {
         } else {
             throw new ObjectAlreadyExistsException();
         }
-        login(new LoginRequest(request.getEmail(), request.getPassword()));
+        return login(new LoginRequest(request.getEmail(), request.getPassword()));
     }
 
     public JwtAuthentication getAuthInfo() {

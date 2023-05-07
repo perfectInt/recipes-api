@@ -36,7 +36,7 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
     }
 
-    public void createUser(RegisterRequest request) {
+    public Long createUser(RegisterRequest request) {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
@@ -46,6 +46,6 @@ public class UserService {
         if (getAllUsers().size() == 0) {
             user.setUserRole(Role.ADMIN.getAuthority());
         }
-        userRepository.save(user);
+        return userRepository.save(user).getId();
     }
 }
