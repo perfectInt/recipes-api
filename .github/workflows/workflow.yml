@@ -11,7 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      app_name: recipes-api
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -33,7 +34,7 @@ jobs:
       - name: Upload artifact archive
         uses: actions/upload-artifact@v2
         with:
-          name: recipes-api-0.0.1-SNAPSHOT.jar
+          name: recipes-api
           path: artifact.zip
 
   send_telegram:
@@ -43,7 +44,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: recipes-api-0.0.1-SNAPSHOT.jar
+          name: recipes-api
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
