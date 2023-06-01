@@ -26,3 +26,12 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Build artifact
+        run: mvn clean package
+      - name: Create artifact archive
+        run: zip -r artifact.zip target/recipes-api-0.0.1-SNAPSHOT.jar
+      - name: Upload artifact archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: recipes-api-0.0.1-SNAPSHOT.jar
+          path: artifact.zip
