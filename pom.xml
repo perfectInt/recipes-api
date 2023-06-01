@@ -10,6 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
     <groupId>io.sultanov</groupId>
     <artifactId>recipes-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -122,34 +123,34 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.4</version>
                 <executions>
-                  <execution>
-                           <goals>
-                                    <goal>prepare-agent</goal>
-                           </goals>
-                  </execution>
-                           <!-- attached to Maven test phase -->
-                  <execution>
-                           <id>report</id>
-                                    <phase>test</phase>
-                                    <goals>
-                                             <goal>report</goal>
-                                    </goals>
-                   </execution>
-                 </executions>
-         </plugin>
-         <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-surefire-plugin</artifactId>
-                  <version>2.22.2</version>
-                  <configuration>
-                           <reportFormat>plain</reportFormat>
-                           <includes>
-                                    <include>**/*Service*.java</include>
-                                    <include>**/*Controller*.java</include>
-                           </includes>
-                  </configuration>
-         </plugin>
-         <plugin>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <!-- attached to Maven test phase -->
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <reportFormat>plain</reportFormat>
+                    <includes>
+                        <include>**/*Service*.java</include>
+                        <include>**/*Controller*.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.4.0.905</version>
