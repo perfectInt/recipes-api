@@ -10,6 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
     <groupId>io.sultanov</groupId>
     <artifactId>recipes-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
