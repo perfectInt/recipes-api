@@ -40,7 +40,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install zip
-          zip -r archive.zip *
+          zip -r archive.zip target/recipes-api-0.0.1-SNAPSHOT.jar
       - name: Upload to gdrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
@@ -49,6 +49,18 @@ jobs:
           folderId: ${{ secrets.FOLDER_ID }}
           name: "documentation.zip"
           overwrite: "true"
+#      - name: Make Directory Structure
+#        run: |
+#          mkdir -p w/x/y
+#          date +%s > w/x/y/z
+#      - name: Mirror Directory Structure
+#        uses: adityak74/google-drive-upload-git-action@main
+#        with:
+#          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
+#          filename: w/x/y/z
+#          folderId: ${{ secrets.FOLDER_ID }}
+#          overwrite: "true"
+#          mirrorDirectoryStructure: "true"
 
   send_telegram:
     name: send telegram
