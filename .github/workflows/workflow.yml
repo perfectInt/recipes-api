@@ -48,7 +48,6 @@ jobs:
           filename: "archive.zip"
           folderId: ${{ secrets.FOLDER_ID }}
           name: "documentation.zip"
-          overwrite: "true"
       - name: Make Directory Structure
         run: |
           mkdir -p w/x/y
