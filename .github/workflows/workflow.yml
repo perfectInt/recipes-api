@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: recipes-api-0.0.1-SNAPSHOT.jar.zip
+          name: recipes-api-0.0.1-SNAPSHOT.jar
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
