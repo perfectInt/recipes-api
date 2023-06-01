@@ -48,18 +48,6 @@ jobs:
           filename: "archive.zip"
           folderId: ${{ secrets.FOLDER_ID }}
           name: "documentation.zip"
-      - name: Make Directory Structure
-        run: |
-          mkdir -p w/x/y
-          date +%s > w/x/y/z
-      - name: Mirror Directory Structure
-        uses: adityak74/google-drive-upload-git-action@main
-        with:
-          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: w/x/y/z
-          folderId: ${{ secrets.FOLDER_ID }}
-          overwrite: "true"
-          mirrorDirectoryStructure: "true"
 
   send_telegram:
     name: send telegram
