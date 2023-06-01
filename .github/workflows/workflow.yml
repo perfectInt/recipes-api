@@ -35,3 +35,25 @@ jobs:
         with:
           name: recipes-api-0.0.1-SNAPSHOT.jar
           path: artifact.zip
+
+  send_telegram:
+    name: send telegram
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: recipes-api-0.0.1-SNAPSHOT.jar.zip
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          document: recipes.zip
+          message: |
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+
+            Repository: ${{ github.repository }}
+
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
