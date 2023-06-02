@@ -40,9 +40,9 @@ jobs:
 
       - name: ls
         run: ls -la
-#
-#      - name: Maven Verify
-#        run: mvn -B clean verify
+
+      - name: Maven Verify
+        run: mvn -B clean verify
 
 #      - name: Build and package Spring Boot app
 #        run: mvn clean package -DskipTests
