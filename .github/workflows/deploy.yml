@@ -56,4 +56,6 @@ jobs:
           docker push ${{secrets.DOCKER_USERNAME}}/recipes-api:latest
 
       - name: Deploy using Docker Compose
-        run: docker-compose up -d
+        run: |
+          cd docker
+          docker-compose up -d
