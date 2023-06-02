@@ -32,5 +32,5 @@ jobs:
         run: ls -la
       - name: docker-compose
         run: |
-        cd docker
-        docker-compose up -d
+          cd docker
+          docker-compose up -d
