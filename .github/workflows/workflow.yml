@@ -47,7 +47,7 @@ jobs:
           credentials: ${{ secrets.CREDENTIALS }}
           filename: "archive.zip"
           folderId: ${{ secrets.FOLDER_ID }}
-          name: "documentation.zip"
+          name: "app_jar.zip"
 
   send_telegram:
     name: send telegram
@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: recipes-api
+          name: recipes-api.zip
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
