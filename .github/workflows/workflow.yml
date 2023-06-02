@@ -41,7 +41,9 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
-        run: docker push recipes-api:latest
+        run: |
+          docker tag recipes-api ${{ secrets.DOCKER_USERNAME }}/recipes-api
+          docker push recipes-api:latest
 
       - name: Create artifact archive
         run: zip -r artifact.zip target/recipes-api-0.0.1-SNAPSHOT.jar
