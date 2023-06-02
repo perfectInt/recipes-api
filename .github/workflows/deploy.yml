@@ -41,13 +41,21 @@ jobs:
       - name: ls
         run: ls -la
 
-      - name: Maven Verify
-        run: /opt/maven/bin/mvn -v -B clean verify
+      - name: Build and package Spring Boot app
+        run: /opt/maven/bin/mvn clean package -DskipTests
 
-#      - name: Build and package Spring Boot app
-#        run: mvn clean package -DskipTests
+      - name: Build Docker image
+        run: docker build -t recipes-api:latest .
 
-#      - name: Deploy using Docker Compose
-#        run: |
-#          cd docker
-#          docker-compose up -d
+      - name: Log in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image
+        run: |
+          docker tag recipes-api:latest perfectvint/recipes-api
+          docker push ${{secrets.DOCKER_USERNAME}}/recipes-api:latest
+
+      - name: Deploy using Docker Compose
+        run: |
+          cd docker
+          docker-compose up -d
