@@ -42,8 +42,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker tag recipes-api ${{ secrets.DOCKER_USERNAME }}/recipes-api
-          docker push recipes-api:latest
+          docker push ${{secrets.DOCKER_USERNAME}}/recipes-api:latest
 
       - name: Create artifact archive
         run: zip -r artifact.zip target/recipes-api-0.0.1-SNAPSHOT.jar
