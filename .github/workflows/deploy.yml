@@ -42,7 +42,7 @@ jobs:
         run: ls -la
 
       - name: Maven Verify
-        run: mvn -B clean verify
+        run: /opt/maven/bin/mvn -v -B clean verify
 
 #      - name: Build and package Spring Boot app
 #        run: mvn clean package -DskipTests
