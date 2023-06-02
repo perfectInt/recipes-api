@@ -36,7 +36,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
 
       - name: Build and package Spring Boot app
         run: mvn clean package -DskipTests
