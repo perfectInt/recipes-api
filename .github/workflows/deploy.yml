@@ -22,15 +22,28 @@ jobs:
           cache: maven
       - name: run tests
         run: mvn test
+
   deploy:
     runs-on: self-hosted
     needs: test
+
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
-      - name: ls
-        run: ls -la
-#      - name: docker-compose
-#        run: |
-#          cd docker
-#          docker-compose up
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and package Spring Boot app
+        run: ./mvnw clean package -DskipTests
+
+      - name: Build Docker image
+        run: docker build -t recipes-api:latest .
+
+      - name: Log in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image
+        run: docker push recipes-api:latest
+
+      - name: Deploy using Docker Compose
+        run: |
+          cd docker
+          docker-compose up -d
