@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build and package Spring Boot app
-        run: mvn clean package -DskipTests
+        run: sudo ./mvnw clean package -DskipTests
 
       - name: Build Docker image
         run: docker build -t recipes-api:latest .
