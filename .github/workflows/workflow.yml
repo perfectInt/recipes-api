@@ -34,6 +34,15 @@ jobs:
       - name: Build artifact
         run: mvn clean package
 
+      - name: Build Docker image
+        run: docker build -t recipes-api:latest .
+
+      - name: Log in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image
+        run: docker push recipes-api:latest
+
       - name: Create artifact archive
         run: zip -r artifact.zip target/recipes-api-0.0.1-SNAPSHOT.jar
 

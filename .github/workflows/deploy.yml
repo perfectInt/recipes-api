@@ -36,23 +36,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+      -name: ls
+       run: ls -la
+#
+#      - name: Maven Verify
+#        run: mvn -B clean verify
 
-      - name: Maven Verify
-        run: mvn -B clean verify
+#      - name: Build and package Spring Boot app
+#        run: mvn clean package -DskipTests
 
-      - name: Build and package Spring Boot app
-        run: mvn clean package -DskipTests
-
-      - name: Build Docker image
-        run: docker build -t recipes-api:latest .
-
-      - name: Log in to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Push Docker image
-        run: docker push recipes-api:latest
-
-      - name: Deploy using Docker Compose
-        run: |
-          cd docker
-          docker-compose up -d
+#      - name: Deploy using Docker Compose
+#        run: |
+#          cd docker
+#          docker-compose up -d
