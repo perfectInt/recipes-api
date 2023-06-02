@@ -42,6 +42,7 @@ jobs:
 
       - name: Push Docker image
         run: |
+          docker tag recipes-api:latest perfectvint/recipes-api
           docker push ${{secrets.DOCKER_USERNAME}}/recipes-api:latest
 
       - name: Create artifact archive
