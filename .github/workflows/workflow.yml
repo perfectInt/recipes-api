@@ -15,32 +15,40 @@ jobs:
       app_name: recipes-api
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
       - name: Maven Verify
         run: mvn -B clean verify
+
       - name: Test Coverage
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Build artifact
         run: mvn clean package
+
       - name: Create artifact archive
         run: zip -r artifact.zip target/recipes-api-0.0.1-SNAPSHOT.jar
+
       - name: Upload artifact archive
         uses: actions/upload-artifact@v2
         with:
           name: recipes-api
           path: artifact.zip
+
       - name: Archive files
         run: |
           sudo apt-get update
           sudo apt-get install zip
           zip -r archive.zip target/recipes-api-0.0.1-SNAPSHOT.jar
+
       - name: Upload to gdrive
         uses: adityak74/google-drive-upload-git-action@main
         with:
