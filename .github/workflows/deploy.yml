@@ -1,4 +1,4 @@
-name: Deploy buy runner
+name: Deploy by runner
 
 on:
   pull_request:
@@ -62,4 +62,5 @@ jobs:
 
       - name: Run the application
         run: |
-          docker run perfectvint/recipes-api
+          cd docker
+          docker-compose up -d
