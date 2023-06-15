@@ -38,6 +38,16 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Clearing old images
+        run: |
+          cd docker
+          docker-compose down
+
+      - name: Up MySQL DB
+        run: |
+          cd docker
+          docker-compose up -d
+
       - name: ls
         run: ls -la
 
@@ -55,16 +65,6 @@ jobs:
           docker tag recipes-api:latest perfectvint/recipes-api
           docker push ${{secrets.DOCKER_USERNAME}}/recipes-api:latest
 
-      - name: Clearing old images
-        run: |
-          cd docker
-          docker-compose down
-
-      - name: Up MySQL DB
-        run: |
-          cd docker
-          docker-compose up -d
-
       - name: Run the application
         run: |
-          /opt/maven/bin/mvn spring-boot:run
+          docker run recipes-api
