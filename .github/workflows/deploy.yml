@@ -59,3 +59,7 @@ jobs:
         run: |
           cd docker
           docker-compose up -d
+
+      - name: Run the application
+        run: |
+          /opt/maven/bin/mvn spring-boot:run
