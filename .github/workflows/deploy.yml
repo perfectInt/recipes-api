@@ -57,8 +57,7 @@ jobs:
 
       - name: Deploy using Docker Compose
         run: |
-          cd docker
-          docker-compose up -d
+          docker/docker-compose up -d
 
       - name: Run the application
         run: |
