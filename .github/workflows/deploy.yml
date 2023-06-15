@@ -67,4 +67,4 @@ jobs:
 
       - name: Run the application
         run: |
-          /opt/maven/bin/mvn spring-boot:run &
+          /opt/maven/bin/mvn spring-boot:run
