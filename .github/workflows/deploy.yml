@@ -62,9 +62,9 @@ jobs:
 
       - name: Up MySQL DB
         run: |
+          cd docker
           docker-compose up -d
 
       - name: Run the application
         run: |
-          cd ..
           /opt/maven/bin/mvn spring-boot:run
