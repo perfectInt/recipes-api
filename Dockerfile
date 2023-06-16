@@ -3,7 +3,7 @@ COPY .mvn .mvn
 COPY mvnw .
 COPY pom.xml .
 COPY src src
-RUN mvn -B package
+ENTRYPOINT /opt/maven/bin/mvn -B package
 
 FROM openjdk:17
 ARG JAR_FILE=target/recipes-api-0.0.1-SNAPSHOT.jar
