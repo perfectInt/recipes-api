@@ -3,7 +3,8 @@ COPY .mvn .mvn
 COPY mvnw .
 COPY pom.xml .
 COPY src src
-RUN chmod +x mvnw | ./mvnw -B package
+RUN chmod +x mvnw
+RUN ./mvnw -B package
 
 FROM openjdk:17
 ARG JAR_FILE=target/recipes-api-0.0.1-SNAPSHOT.jar
