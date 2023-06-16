@@ -28,14 +28,14 @@ jobs:
       - name: ls
         run: ls -la
 
+      - name: Log in to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build and package Spring Boot app
         run: /opt/maven/bin/mvn clean package -DskipTests
 
       - name: Build Docker image
         run: docker build -t recipes-api:latest .
-
-      - name: Log in to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
         run: |
