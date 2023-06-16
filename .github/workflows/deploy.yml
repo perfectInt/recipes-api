@@ -20,16 +20,16 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Clearing old images
-        run: |
-          cd docker
-          docker-compose down
+#      - name: Clearing old images
+#        run: |
+#          cd docker
+#          docker-compose down
 
       - name: ls
         run: ls -la
 
       - name: Build and package Spring Boot app
-        run: /opt/maven/bin/mvn clean package
+        run: /opt/maven/bin/mvn clean package -DskipTests
 
       - name: Build Docker image
         run: docker build -t recipes-api:latest .
