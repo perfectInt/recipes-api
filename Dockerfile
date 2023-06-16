@@ -3,7 +3,7 @@ COPY .mvn .mvn
 COPY mvnw .
 COPY pom.xml .
 COPY src src
-RUN ./mvnw -B package
+RUN /opt/maven/bin/mvn -B package
 
 ARG JAR_FILE=target/recipes-api-0.0.1-SNAPSHOT.jar
 COPY --from=build ${JAR_FILE} .
